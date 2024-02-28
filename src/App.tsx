@@ -2,6 +2,7 @@ import { SyntheticEvent, useEffect, useState } from "react";
 import "./App.css";
 import { getRandomWord } from "./api/word";
 import toast from "react-hot-toast";
+import { IoReload } from "react-icons/io5";
 
 function App() {
   //const [word, setWord] = useState<{ letter: string; color: string }[]>([]);
@@ -69,42 +70,41 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col gap-4 justify-center items-center align-middle h-screen">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          className="text-4xl w-100 h-20 border-2 border-black text-center uppercase tracking-widest "
-          maxLength={5}
-          value={guess}
-          onChange={(e) => setGuess(e.target.value)}
-        />
-      </form>
-      <div className="flex flex-row gap-2">
-        <button className="border rounded-md p-1" onClick={checkGuess}>
-          Check
-        </button>
-        <button
-          className="border rounded-md p-1"
-          onClick={() => window.location.reload()}
-        >
-          Reload
-        </button>
-      </div>
-      <div className="flex flex-row gap-2">
-         <div className="flex flex-col gap-2">
-        {lines.map((line, lineIndex) => (
-          <div key={lineIndex} className="flex flex-row gap-2">
-            {line.map((item, index) => (
-              <div
-                key={index}
-                className={`w-20 h-20 ${item.color} uppercase rounded-md shadow-md text-black border flex justify-center items-center`}
-              >
-                {item.letter}
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
+    <div>
+      <h1 className=" text-center p-5 text-6xl">Wordle clone</h1>
+      <div className="flex flex-col gap-4 justify-center items-center align-middle">
+         <button
+            className=" absolute top-10 right-10 border rounded-md p-1"
+            onClick={() => window.location.reload()}
+          >
+            <IoReload />
+          </button>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Guess the word!"
+            className="text-4xl w-100 h-20 placeholder:opacity-20 border-2 border-black text-center uppercase tracking-widest "
+            maxLength={5}
+            value={guess}
+            onChange={(e) => setGuess(e.target.value)}
+          />
+        </form>
+        <div className="flex flex-row gap-2">
+           <div className="flex flex-col gap-2">
+          {lines.map((line, lineIndex) => (
+            <div key={lineIndex} className="flex flex-row gap-2">
+              {line.map((item, index) => (
+                <div
+                  key={index}
+                  className={`w-20 h-20 ${item.color} uppercase rounded-md shadow-md text-black border flex justify-center items-center`}
+                >
+                  {item.letter}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+        </div>
       </div>
     </div>
   );
