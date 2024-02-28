@@ -96,7 +96,7 @@ function App() {
               {line.map((item, index) => (
                 <div
                   key={index}
-                  className={`w-20 h-20 ${item.color} uppercase rounded-md shadow-md text-black border flex justify-center items-center`}
+                  className={`w-20 h-20 ${item.color} uppercase rounded-md shadow-md text-4xl text-black border flex justify-center items-center`}
                 >
                   {item.letter}
                 </div>
