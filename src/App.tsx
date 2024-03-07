@@ -15,6 +15,7 @@ function App() {
       ? parseInt(localStorage.getItem("wordLength")!)
       : 5
   );
+  const [won, setWon] = useState<boolean>(false);
 
   useEffect(() => {
    console.log(wordLength)
@@ -26,7 +27,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (attempt === 5) {
+    if (attempt === 5 && !won) {
       toast.error("Sorry, all attempts are used :( The word was " + actualWord);
       setTimeout(() => {
         window.location.reload();
@@ -52,6 +53,7 @@ function App() {
       }
     }
     if (newWord.map((item) => item.letter).join("") === actualWord) {
+      setWon(true);
       toast.success("You win!", { icon: "🎉" });
       setTimeout(() => {
         window.location.reload();
@@ -62,8 +64,10 @@ function App() {
       prev[attempt] = newWord;
       return prev;
     });
-    setGuess("");
-    setAttempt((prev) => prev + 1);
+    if(!won){
+      setGuess("");
+      setAttempt((prev) => prev + 1);
+    }
   }
   function handleSubmit(event: SyntheticEvent) {
     event.preventDefault();
