@@ -4,6 +4,7 @@ import { getRandomWord } from "./api/word";
 import toast from "react-hot-toast";
 import { IoReload } from "react-icons/io5";
 import WordLengthSelector from "./components/WordLengthSelector";
+import Disclamer from "./components/Disclamer";
 
 function App() {
   const [guess, setGuess] = useState<string>("");
@@ -83,6 +84,7 @@ function App() {
         <h2 className="text-center text-sm font-extrabold">
           (But not really..)
         </h2>
+        <Disclamer />
       </div>
       <div className="flex flex-col gap-4 justify-center items-center align-middle">
         <button
@@ -118,7 +120,7 @@ function App() {
               </div>
             ))}
             {attempt === 4 && (
-              <h1 className="text-2xl text-center">Only one try left!</h1>
+              <h1 className="text-2xl text-center font-bold text-cyan-300">Only one try left!</h1>
             )}
           </div>
         </div>
