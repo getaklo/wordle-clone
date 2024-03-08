@@ -19,7 +19,6 @@ function App() {
   const [won, setWon] = useState<boolean>(false);
 
   useEffect(() => {
-   console.log(wordLength)
     getRandomWord(wordLength)
       .then((word) => {
         setActualWord(word);
@@ -40,7 +39,7 @@ function App() {
   function checkGuess() {
     let newWord = new Array(wordLength);
     if (guess.length !== wordLength) {
-      toast.error("Please enter a 5 letter word");
+      toast.error(`Please enter a ${wordLength} letter word`);
       return;
     }
 
@@ -55,7 +54,7 @@ function App() {
     }
     if (newWord.map((item) => item.letter).join("") === actualWord) {
       setWon(true);
-      toast.success("You win!", { icon: "🎉" });
+      toast.success("You win!");
       setTimeout(() => {
         window.location.reload();
       }, 3000);
@@ -84,11 +83,12 @@ function App() {
         <h2 className="text-center text-sm font-extrabold">
           (But not really..)
         </h2>
+        <br />
         <Disclamer />
       </div>
       <div className="flex flex-col gap-4 justify-center items-center align-middle">
         <button
-          className=" absolute top-10 right-10 p-1 hover:scale-110 hover:animate-pulse"
+          className=" absolute top-12 right-10 p-1 hover:scale-110 hover:animate-pulse"
           onClick={() => window.location.reload()}
         >
           <IoReload size={25} />
